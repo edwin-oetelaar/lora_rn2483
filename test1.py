@@ -77,7 +77,7 @@ if __name__ == '__main__':
                 if s.startswith('radio_rx'):
                     # we got some data
                     l = len(s)
-                    # bytearray.fromhex("7061756c").decode()
+
                     h = s[10:][:-2]
 
                     ba = bytearray.fromhex(h)
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         if ptx.readable():
             r = ptx.readline()
             if len(r):
-                print('<< ptx {r}'.format(r=r[:-2]))
+                print('<< _ptx {r}'.format(r=r[:-2]))
                 s = r.decode()
                 if s.startswith('radio_tx_ok'):
                     # TX is done, we can send more data now
@@ -102,7 +102,7 @@ if __name__ == '__main__':
             if i < msglen:
                 c = hex(message[i])[2:]  # strip 0x
                 m = 'radio tx {xx}'.format(xx=c)
-                print('>> ptx {m}'.format(m=m))
+                print('>> _ptx {m}'.format(m=m))
                 ptx.write(m.encode())
                 ptx.write(b'\r\n')
                 i += 1
